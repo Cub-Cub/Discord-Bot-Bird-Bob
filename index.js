@@ -32,7 +32,7 @@ client.on('message', message => { // listen to all messages
 		var d = Math.random();
 		counter++;
 		console.log(counter);
-		if (d < 0.01) { // 5% to mock
+		if (d < 0.01) { // 1% to mock
 			counter = 0;
 			message.channel.send(birdBob(message.content));
 		} 
