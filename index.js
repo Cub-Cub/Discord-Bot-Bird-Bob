@@ -1,11 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-client.once('ready', () => {
-	console.log('Ready!');
-});
-
-client.login('NzM5NzI1MjExNTI3NTQ0ODQ0.XyeoyQ.i0MaqDOi2trvomeuzw_ehdBS3pI'); // bot token, exclusive for my bot
+var botID = '739725211527544844';
 
 function birdBob (mes) {
 	var remes = "";
@@ -26,9 +22,31 @@ function birdBob (mes) {
 	return remes;
 }
 
+client.once('ready', () => {
+	console.log('Ready!');
+});
+
+client.login(''); // bot token, exclusive for my bot
+
 var counter = 0;
 client.on('message', message => { // listen to all messages
-	if (message.author.bot === false){ // this keeps the bot from mocking itself and other bots
+	var mesID = [];
+	mesID.push(message.id);
+	if (message.content.startsWith('<@')){
+		var uid;
+		if (message.content.charAt(2) == '!') {
+			uid = message.content.slice(3, -1);
+		} else {
+			uid = message.content.slice(2, -1);
+		}
+		if (uid == botID){
+			//message.delete();
+			//mesID.pop();
+			//message.channel.send(birdBob(message.channel.messages.lastMessage.content));
+			console.log(message.channel.messages.fetch(mesID[1]));
+		}
+	}
+	else if (message.author.bot === false){ // this keeps the bot from mocking itself and other bots
 		var d = Math.random();
 		counter++;
 		console.log(counter);
